@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 enum JobStatus
 {
@@ -26,6 +27,42 @@ class Program
 {
     static void Main()
     {
-        
+        List<Job> jobs = new List<Job>();
+        int nextId = 1;
+
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.WriteLine("\n=== Job Tracker ===");
+            Console.WriteLine("1. Add Job");
+            Console.WriteLine("2. List Jobs");
+            Console.WriteLine("3. Update Status");
+            Console.WriteLine("4. Exit");
+            Console.Write("Choose option: ");
+
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    AddJob(jobs, ref nextId);
+                    break;
+                case "2":
+                    ListJobs(jobs);
+                    break;
+                case "3":
+                    UpdateStatus(jobs);
+                    break;
+                case "4":
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Option.");
+                    break
+            }
+        }
     }
+
+    
 }
