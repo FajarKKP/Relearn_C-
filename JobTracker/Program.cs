@@ -59,10 +59,83 @@ class Program
                     break;
                 default:
                     Console.WriteLine("Invalid Option.");
-                    break
+                    break;
             }
         }
     }
 
-    
+
+    static void AddJob(List<Job> jobs, ref int nextId)
+    {
+        Console.Write("Company name: ");
+        string company = Console.ReadLine();
+
+        Console.Write("Position :");
+        string position = Console.ReadLine();
+
+        Job newJob = new Job
+        {
+            Id = nextId++,
+            CompanyName = company,
+            Position = position,
+            Status =JobStatus.Applied
+        };
+
+    jobs.Add(newJob);
+    Console.WriteLine("Job Successfully added.");
+
+    }
+
+    static void ListJobs(List<Job> jobs)
+    {
+        if (jobs.Count == 0)
+        {
+            Console.WriteLine("No Jobs found.");
+            return;
+        }
+
+        foreach (var job in jobs)
+        {
+            Console.WriteLine
+            (
+                $"ID: {job.Id} | {job.CompanyName} - {job.Position} | Status: {job.Status}"
+            );
+        }
+    }
+
+
+    static void UpdateStatus(List<Job> jobs)
+    {
+        Console.WriteLine("Enter Job Id: ");
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("Invalid Id.");
+            return;
+        }
+
+        Job job = jobs.Find(j => j.Id == id);
+
+        if (job == null)
+        {
+            Console.WriteLine("Job not found.");
+            return;
+        }
+
+        Console.WriteLine("Select new status:");
+        Console.WriteLine("0 - Applied");
+        Console.WriteLine("1 - Interview");
+        Console.WriteLine("2 - Rejected");
+        Console.WriteLine("3 - Offer");
+
+        if (!int.TryParse(Console.ReadLine(), out int statusValue) || !Enum.IsDefined(typeof(JobStatus), statusValue))
+        {
+            Console.WriteLine("Invalid Status");
+            return;
+        }
+
+        job.Status = (JobStatus)statusValue;
+
+        Console.WriteLine("Status updated.");
+    }
+
 }
