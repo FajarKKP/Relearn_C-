@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 enum JobStatus
 {
@@ -94,12 +95,19 @@ class Program
             return;
         }
 
-        foreach (var job in jobs)
+        var groupedJobs = jobs.GroupBy(j => j.Status);
+
+        foreach (var group in groupedJobs)
         {
-            Console.WriteLine
-            (
-                $"ID: {job.Id} | {job.CompanyName} - {job.Position} | Status: {job.Status}"
-            );
+            Console.WriteLine($"\n=== {group.Key} ===");
+
+            foreach (var job in jobs)
+            {
+                Console.WriteLine
+                (
+                    $"ID: {job.Id} | {job.CompanyName} - {job.Position} | Status: {job.Status}"
+                );
+            }
         }
     }
 
