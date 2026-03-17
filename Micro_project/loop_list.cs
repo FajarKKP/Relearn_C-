@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 List<int> dummyList = new List<int> {1,2,4,7,3,5};
 
@@ -10,5 +8,10 @@ List<int> dummyList = new List<int> {1,2,4,7,3,5};
 // {
 //     Console.WriteLine(i);
 // }
+
+foreach (var numb in dummyList)
+{
+    Console.WriteLine(numb);
+}
 
 Console.WriteLine(dummyList.Max());
