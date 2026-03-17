@@ -22,7 +22,20 @@ class Program
 {
     static void Main()
     {
-        List<Book> books_saved = new List<Book>();
+        // List<Book> books_saved = new List<Book>();
+
+        List<Book> books_saved = new List<Book>
+        {
+            new Book("How to train your model", "Christian", 2010),
+            new Book("Highway or Lowkey", "Dr. Seus", 1988),
+            new Book("The Sorcerers Apprentice", "Harry P.", 2012),
+            new Book("Something to do than nothing", "Grace", 2018),
+            new Book("I.T logically", "Crassius", 1950),
+            new Book("Application of Deep Learning and where to find them", "Christian", 2025),
+            new Book("Rise of Machine and its benefit", "Mario", 2018),
+            new Book("How to sing a melody", "Sinatra", 2001),
+            new Book("The Lion, The Witch and the Gilded Throne", "Harry P.", 2000),
+        };
 
         while(true)
         {
