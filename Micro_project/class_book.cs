@@ -72,7 +72,9 @@ class Program
                 }
                 else
                 {
-                    foreach (var books_in_dir in books_saved)
+                    var recent_books = books_saved.Where(b => b.Year >= 2015);
+
+                    foreach (var books_in_dir in recent_books)
                     {
                         Console.WriteLine($"{books_in_dir.Title} by {books_in_dir.Author} - {books_in_dir.Year}");
                     }
