@@ -37,12 +37,25 @@ class Program
             new Book("The Lion, The Witch and the Gilded Throne", "Harry P.", 2000),
         };
 
+        Dictionary<string, string> contact = new Dictionary<string, string>
+        {
+            {"Christian", "christian@email.com"},
+            {"Dr. Seus", "drseus@email.com"},
+            {"Harry P.", "harryp@email.com"},
+            {"Grace", "grace@email.com"},
+            {"Crassius", "crassius@email.com"},
+            {"Mario", "mario@email.com"},
+            {"Sinatra", "sinatra@email.com"}
+        };
+
         while(true)
         {
             Console.WriteLine("Welcome to book safer, what would you like to do?");
-            Console.WriteLine("1.Add new books");
-            Console.WriteLine("2.Show saved books");
-            Console.WriteLine("3.Exit");
+            Console.WriteLine("1. Add new books");
+            Console.WriteLine("2. Show saved books");
+            Console.WriteLine("3. Get Author Contact");
+            Console.WriteLine("4. Add Author Contact");
+            Console.WriteLine("9. Exit");
 
             Console.Write("Choose Option: ");
             string input = Console.ReadLine();
@@ -80,8 +93,35 @@ class Program
                     }
                 }
             }
-
+            
             else if (input == "3")
+            {
+                // Dictionary<string, string> contact = new Dictionary<string, string>();
+
+                var authors_saved = books_saved.Select(x => x.Author).Distinct();
+
+                if (authors_saved.Count() >= 1)
+                {
+                    foreach (var saved_author in authors_saved)
+                    {   
+                        if (contact.TryGetValue(saved_author, out string info))
+                        {
+                            Console.WriteLine($"{saved_author} : {info}");    
+                        }
+                        else
+                        {
+                            Console.WriteLine("No contact is saved");
+                        }
+                    }
+                }
+            }
+
+            else if (input == "4")
+            {
+                Console.WriteLine("Under maintenance. This option is to add contact to already saved author");
+            }
+
+            else if (input == "9")
             {
                 break;
             }
