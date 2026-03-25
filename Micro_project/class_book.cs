@@ -18,12 +18,30 @@ class Book
 
 }
 
+
 class Program
 {
     static void Main()
     {
         // List<Book> books_saved = new List<Book>();
+        // Dictionary<string, string> contact = new Dictionary<string, string>();
 
+        static void AddBooks(List<Book> books_saved)
+        {
+            Console.Write("Book's title: ");
+            string this_book_title = Console.ReadLine();
+
+            Console.Write("Book's author: ");
+            string this_book_author = Console.ReadLine();
+
+            Console.Write("Book's year of creation: ");
+            int this_book_year = int.Parse(Console.ReadLine());
+
+            books_saved.Add(new Book(this_book_title, this_book_author, this_book_year));
+            
+            Console.WriteLine("Book Successfully added");
+        }
+        
         List<Book> books_saved = new List<Book>
         {
             new Book("How to train your model", "Christian", 2010),
@@ -62,17 +80,7 @@ class Program
 
             if (input == "1")
             {
-                Console.Write("Book's title: ");
-                string this_book_title = Console.ReadLine();
-
-                Console.Write("Book's author: ");
-                string this_book_author = Console.ReadLine();
-
-                Console.Write("Book's year of creation: ");
-                int this_book_year = int.Parse(Console.ReadLine());
-
-                books_saved.Add(new Book(this_book_title, this_book_author, this_book_year));
-                Console.WriteLine("Book Successfully added");
+                AddBooks(books_saved);
             }
 
             else if (input == "2")
@@ -96,8 +104,6 @@ class Program
             
             else if (input == "3")
             {
-                // Dictionary<string, string> contact = new Dictionary<string, string>();
-
                 var authors_saved = books_saved.Select(x => x.Author).Distinct();
 
                 if (authors_saved.Count() >= 1)
