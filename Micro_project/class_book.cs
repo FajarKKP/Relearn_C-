@@ -131,6 +131,11 @@ class Program
             {
                 break;
             }
+            
+            else
+            {
+                Console.WriteLine("Wrong option choosen. Please choose another option.");
+            }
         } 
     }
 
