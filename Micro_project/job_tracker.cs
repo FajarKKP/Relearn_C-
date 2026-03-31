@@ -31,7 +31,7 @@ class Program
             Console.WriteLine("3. Exit.");
 
             Console.Write("Selected option: ");
-            string user_input = Console.ReadLine;
+            string user_input = Console.ReadLine();
 
             if (user_input == "1")
             {
