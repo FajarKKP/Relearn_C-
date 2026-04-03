@@ -1,17 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text.Json;
 
-var json = "{\"name\":\"John\",\"age\":\"30\"}";
+// var json = "{\"name\":\"John\",\"age\":\"30\"}";
 
-// Console.WriteLine(json);
+// // Console.WriteLine(json);
 
-Person? person = JsonSerializer.Deserialize<Person>(json);
+// Person? person = JsonSerializer.Deserialize<Person>(json);
 
-Console.WriteLine(person?.age);
+// Console.WriteLine(person?.age);
 
-public class Person
+// public class Person
+// {
+//     public string? name {get; set;}
+//     public string? age {get; set;}
+// }
+
+public class Company
 {
-    public string? name {get; set;}
-    public string? age {get; set;}
+    public string? company_name {get; set;}
+    public string? role {get; set;}
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Company company = new Company
+        {
+            company_name = "Ken's WH",
+            role = "SoftEng"
+        };
+
+        string json_string = JsonSerializer.Serialize(company);
+
+        Console.WriteLine(json_string);
+    }
 }
