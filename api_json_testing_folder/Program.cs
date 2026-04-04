@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Text.Json;
 
 // var json = "{\"name\":\"John\",\"age\":\"30\"}";
@@ -17,24 +19,39 @@ using System.Text.Json;
 //     public string? age {get; set;}
 // }
 
-public class Company
-{
-    public string? company_name {get; set;}
-    public string? role {get; set;}
-}
+// public class Company
+// {
+//     public string? company_name {get; set;}
+//     public string? role {get; set;}
+// }
+
+// public class Program
+// {
+//     public static void Main(string[] args)
+//     {
+//         Company company = new Company
+//         {
+//             company_name = "Ken's WH",
+//             role = "SoftEng"
+//         };
+
+//         string json_string = JsonSerializer.Serialize(company);
+
+//         Console.WriteLine(json_string);
+//     }
+// }
 
 public class Program
 {
-    public static void Main(string[] args)
+
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
     {
-        Company company = new Company
-        {
-            company_name = "Ken's WH",
-            role = "SoftEng"
-        };
+        string url = "https://jsonplaceholder.typicode.com/posts";
 
-        string json_string = JsonSerializer.Serialize(company);
+        string json_response = await client.GetStringAsync(url);
 
-        Console.WriteLine(json_string);
+        Console.WriteLine(json_response);
     }
 }
