@@ -41,6 +41,14 @@ using System.Text.Json;
 //     }
 // }
 
+public class Received_data
+{
+    public int? userId {get; set;}
+    public int? id {get; set;}
+    public string? title {get; set;}
+    public string? body {get; set;}
+}
+
 public class Program
 {
 
@@ -52,6 +60,16 @@ public class Program
 
         string json_response = await client.GetStringAsync(url);
 
-        Console.WriteLine(json_response);
+        // Console.WriteLine(json_response);
+
+        List<Received_data>? data = JsonSerializer.Deserialize<List<Received_data>>(json_response);
+
+        foreach (var data_arrived in data)
+        {
+            Console.WriteLine(data_arrived.id);
+            Console.WriteLine(data_arrived.title);
+            Console.WriteLine(data_arrived.userId);
+        }
     }
 }
+
